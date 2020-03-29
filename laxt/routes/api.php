@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/hello', function(){ return 'helloworld';});
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/register', 'RegistController@index');
 
 Route::get('/product-all', 'ProductController@index');
+Route::get('/product/{id}', 'ProductController@detail');
+Route::get('/categories/{id}', 'ProductController@categories');
 
+Route::get('/userss', function () { return 'ok';});
 
 

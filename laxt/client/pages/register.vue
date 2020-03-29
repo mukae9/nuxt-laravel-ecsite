@@ -1,52 +1,81 @@
 <template>
 <div>
 	<div class="form">
-			<p>名前</p>
-			<input type="text" name="name">
+			<h2>会員登録</h2>
+			<p class="link"><nuxt-link to="/login">登録済みの方はこちら</nuxt-link></p>
+			<p>名前</p>{{$store.state.regist.user}}
+			<input type="text" name="name" v-model="user.name">
 			<p>メールアドレス</p>
-			<input type="email" name="email">
+			<input type="email" name="email" v-model="user.email">
 			<p>パスワード</p>
-			<input type="password" name="password">
+			<input type="password" name="password" v-model="user.password">
 			<p>パスワード（確認）</p>
 			<input type="password" name="password_confilm">
-			<button type="button" @click="login">会員登録</button>
+			<button type="button" v-on:click="$store.dispatch('regist/createUserAction',user)">会員登録</button>
 	</div>
 </div>
 </template>
 <script>
 	export default {
-      async asyncData({app}){
-        const products = await app.$axios.$get('http://localhost/api/product-all')
-        return {products};
-    },
-    
-  };
-  
+		data(){
+			return {
+				user:{
+					name: 'ddd',
+					email:'ddd',
+					password:'ddd'
+				}
+			}
+		},
+
+		// app.$axios.get('/sanctum/csrf-cookie').then(response => {
+
+		methods:{
+			regist(){
+				$store.commit()
+			}
+		}
+
+	};
 </script>
 
-<style>
-.products-flex{
-  display: flex;
-  flex-wrap: wrap;
-  width: 96%;
-  margin: 0 auto;
+<style scoped>
+.form{
+	width: 60%;
+	max-width: 380px;
+	margin: 48px auto;
+	color: #585858;
 }
 
-li {
-	list-style-type: none;
-}
-
-.product-cards{
-	padding: 24px 8px;
-	margin: 4px;
-	margin-top:16px;
-	width: 18vw;
+.link{
+	text-align: center;
+	padding: 16px;
 	font-size: 0.9em;
-	border-top: 2px #ccc solid;
-	border-bottom: 2px #ccc solid;
 }
 
-.product-cards img{
-	padding: 4px 0px;
+.form h2 {
+	text-align: center;
+	padding: 8px;
+	font-size: 1.4em;
+	
+}
+
+.form p {
+	margin: 0px;
+}
+
+input[type="text"],input[type="email"],input[type="password"]{
+	width: 100%;
+	margin-bottom: 24px;
+	color: #585858;
+}
+
+button{
+	display: block;
+	width: 120px;
+	margin: 42px auto;
+}
+
+button:hover{
+	opacity: 0.8;
 }
 </style>

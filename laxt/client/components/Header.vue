@@ -30,7 +30,7 @@
 				<nav>
 					<ul>
 						<li>
-							<nuxt-link to="/cart">カート</nuxt-link>
+							<nuxt-link to="/cart"><font-awesome-icon icon="shopping-cart"  style="font-size: 20px; margin-right:4px;"/>カート</nuxt-link>
 						</li>
 						<li>
 							<nuxt-link to="/login">ログイン</nuxt-link>

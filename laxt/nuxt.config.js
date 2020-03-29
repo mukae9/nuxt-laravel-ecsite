@@ -44,18 +44,33 @@ export default {
     'bootstrap-vue/nuxt',
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
+    'nuxt-fontawesome',
   ],
 
   layoutTransition: {
     name: 'page',
     mode: 'out-in'
   },
-  
+
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      }
+    ]
+  },
+
   axios: {
-    baseURL: '/',
+    prefix: '/api',
   },
   proxy: {
-    // '/api': 'http://localhost:8000/', ないほうがいい？
+    '/api': {
+      target: 'http://localhost',
+      pathRewrite: {
+        '^/api': '/'
+      }
+    }
   },
   /*
   ** Build configuration
