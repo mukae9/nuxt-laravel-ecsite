@@ -4,7 +4,8 @@
         <ul class="product-container">
             
             <li class="title"><h2>{{product.name}}</h2></li>
-            <li><img src="/images/demo.jpg" style="width:100%;"></li>
+            <li><img :src="product.imgpath" style="width:100%;"></li>
+            <li class="detail">{{product.detail}}</li>
             <li ><span class="star">★★★★★</span>(120)</li>
             <li><nuxt-link to="/link01">{{product.categories}}</nuxt-link></li>
             <li>2020/2/19発売</li>
@@ -70,11 +71,11 @@
         <section class="similar">
             <h2>同じカテゴリの商品</h2>
         <div class="products-flex">
-		<div v-for="product of categories_products" :key="product.id">
+		<div v-for="product of categorise_products" :key="product.id">
 			<nuxt-link v-bind:to="{name:'products-id',params:{id:product.id}}">
 				<ul class="product-cards">
 					<li class="title">{{product.name}}</li>
-					<li><img src="/images/demo.jpg" style="width:100%;"></li>
+					<li><img :src="product.imgpath" style="width:100%;"></li>
 					<li ><span class="star">★★★★★</span>(120)</li>
 					<li><nuxt-link to="/link01">{{product.categories}}</nuxt-link></li>
 					<li class="fee">¥{{product.fee.toLocaleString()}}</li>
@@ -100,9 +101,8 @@
             const url = 'http://localhost/api/product/'+params.id
             const product = await app.$axios.$get(url)
             const categories_url = 'http://localhost/api/categories/'+product.categories
-            const categories_products = await app.$axios.$get('http://localhost/api/product-all')
-            console.log(product.categories)
-            return {product,categories_products};
+            const categorise_products = await app.$axios.$get(categories_url)
+            return {product,categorise_products};
         },
 
   }
@@ -254,7 +254,7 @@ padding: 8px;
 .products-flex{
   display: flex;
   flex-wrap: wrap;
-  width: 96%;
+  width: 94%;
   margin: 0 auto;
 }
 
@@ -279,6 +279,10 @@ a {
 .tax{
     margin: 0;
     font-size:0.8em;
+}
+
+.detail{
+    text-align: center;
 }
 </style>
 

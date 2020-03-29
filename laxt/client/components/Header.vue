@@ -2,28 +2,25 @@
 		<header>
 			<div class="flex">
 				<div>
-					<h1>LaxtShop</h1>
+					<h1><nuxt-link to="/">LaxtShop</nuxt-link></h1>
 					<p>お届け先情報</p>
 				</div>
 				<nav style="flex:2">
 					<ul>
 						<li>
-							<nuxt-link to="/product-List">全商品</nuxt-link>
+							<nuxt-link to="/">全商品</nuxt-link>
 						</li>
 						<li>
-							<nuxt-link to="/link01">本</nuxt-link>
+							<nuxt-link to="/categories/食料品">食料品</nuxt-link>
 						</li>
 						<li>
-							<nuxt-link to="/link02">DVD</nuxt-link>
+							<nuxt-link to="/categories/日用品">日用品</nuxt-link>
 						</li>
 						<li>
-							<nuxt-link to="/link03">CD</nuxt-link>
+							<nuxt-link to="/categories/アウトドア">アウトドア</nuxt-link>
 						</li>
 						<li>
-							<nuxt-link to="/link04">日用品</nuxt-link>
-						</li>
-						<li>
-							<nuxt-link to="/link04">ホビー</nuxt-link>
+							<nuxt-link to="/categories/ホビー">ホビー</nuxt-link>
 						</li>
 					</ul>
 				</nav>
@@ -44,11 +41,25 @@
 		</header>
 </template>
 
+
+<style>
+	.product-cards img {
+		width:100%;
+		height: 200px;
+		object-fit: cover;
+	}
+</style>
+
 <style lang="css" scoped>
 header{
 	color: #fefefe;
 	padding: 16px 48px;
 	background: linear-gradient(135deg, #222f3e,#003582);
+}
+a {
+	outline: none;
+	text-decoration: none;
+	color: inherit;
 }
 
 h1{

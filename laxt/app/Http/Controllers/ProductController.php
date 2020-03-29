@@ -19,4 +19,11 @@ class ProductController extends Controller
         $product = Product::find($product_id);
         return $product;
     }
+
+    public function categories($id)
+    {
+        $categories = $id;
+        $categorise_products = Product::Where('categories',$categories)->get();
+        return $categorise_products;
+    }
 }
