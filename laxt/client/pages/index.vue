@@ -7,7 +7,7 @@
 					
 					<li class="title">{{product.name}}</li>
 					<li><img :src="product.imgpath" style="width:100%;"></li>
-					<li ><span class="star">★★★★★</span>(120)</li>
+					<li ><span class="star">{{toStar(reviewStar(product.reviews ))}}</span>({{reviewStar(product.reviews)}})</li>
 					<li><nuxt-link to="/link01">{{product.categories}}</nuxt-link></li>
 					<li>{{product.release}}発売</li>
 					<li class="fee">¥{{product.fee.toLocaleString()}}</li>

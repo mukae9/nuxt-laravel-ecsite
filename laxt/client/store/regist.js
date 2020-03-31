@@ -4,14 +4,14 @@ export const state = () => ({
 })
 
 export const mutations = {
-    createUser: function(state, userId){
-        state.user = userId
+    createUser: function(state, user_name){
+        state.user = user_name
     }
 }
 
 export const actions = {
-    async createUserAction ({commit},userId) {
-        const res = await this.$axios.$post('http://localhost/api/register',userId)
-        commit("createUser", res.id)
+    async createUserAction ({commit},user_name) {
+        const user = await this.$axios.$post('http://localhost/api/register',user_name)
+        commit("createUser", user.name)
     }
 }

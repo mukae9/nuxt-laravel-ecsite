@@ -30,10 +30,6 @@
 			const products = await app.$axios.$get('http://localhost/api/product-all')
 			return {products};
 		},
-		created(){
-				const total = this.$store.state.product.cart.reduce((p, x) => p + x.fee, 0)
-				return {total}
-		},
 		methods:{
 			cartDelete(id){
 				this.$toast.show('カートから削除しました')
