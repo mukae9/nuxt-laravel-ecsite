@@ -19,6 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('categories','50');
             $table->string('detail','200');
             $table->integer('fee');
+            $table->boolean('express');
+            $table->date('release');
             $table->string('imgpath','200');
         });
     }

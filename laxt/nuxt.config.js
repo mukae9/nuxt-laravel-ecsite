@@ -45,7 +45,16 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/proxy',
     'nuxt-fontawesome',
+    '@nuxtjs/toast'
   ],
+
+  toast: {
+    // 右上にtoastを表示
+    position: 'top-right',
+    // 特に指定しなくても5秒で消えるように設定
+    duration: 2000,
+    singleton:true
+  },
 
   layoutTransition: {
     name: 'page',

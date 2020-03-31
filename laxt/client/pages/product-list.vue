@@ -11,7 +11,7 @@
 					<li><nuxt-link to="/link01">{{product.categories}}</nuxt-link></li>
 					<li>2020/2/19発売</li>
 					<li class="fee">¥{{product.fee.toLocaleString()}}</li>
-					<li><span class="speed"><span class="round">●</span>速配対応</span>明日までにお届け</li>
+					<li></li>
 				</ul>
 			</nuxt-link>
 		</div>

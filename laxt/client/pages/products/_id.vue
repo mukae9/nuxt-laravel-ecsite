@@ -2,23 +2,24 @@
 <div>
   	<div class="product-detail">
         <ul class="product-container">
-            
             <li class="title"><h2>{{product.name}}</h2></li>
             <li><img :src="product.imgpath" style="width:100%;"></li>
             <li class="detail">{{product.detail}}</li>
             <li ><span class="star">★★★★★</span>(120)</li>
             <li><nuxt-link to="/link01">{{product.categories}}</nuxt-link></li>
-            <li>2020/2/19発売</li>
+            <li>{{product.release}}発売</li>
             <li class="fee">¥{{product.fee.toLocaleString()}}</li>
-            <li><span class="speed"><span class="round">●</span>速配対応</span>明日までにお届け</li>
+            <li v-if="product.express"><span class="speed"><span class="round">●</span>速配対応</span>明日までにお届け</li>
+            <li v-else>通常2~3日で配送</li>
             
         </ul>
         <div class="container">
             <div  class="container-box">
                 <li class="tax">税込</li>
                 <p class="fee">¥{{product.fee.toLocaleString()}}</p>
-                <p><span class="speed"><span class="round">●</span>速配対応</span>明日までにお届け</p>
-                <button><font-awesome-icon icon="cart-plus"  style="font-size: 20px; margin-right:4px;"/>カートに入れる</button>
+                <p v-if="product.express"><span class="speed"><span class="round">●</span>速配対応</span>明日までにお届け</p>
+                <p v-else>通常2~3日で配送</p>
+                <button v-on:click="cartIn"><font-awesome-icon icon="cart-plus"  style="font-size: 20px; margin-right:4px;"/>カートに入れる</button>
             </div>
             <div class="review-post">
                 <p class="review-post-title">この商品を評価する</p>
@@ -34,7 +35,7 @@
                 </select>
                 <p>投稿内容</p>
                 <textarea type="text" name=""></textarea>
-                <button>評価する</button>
+                <button v-on:click="review">評価する</button>
             </div>
             <p class="caution">※不適切な表現がある投稿などについては投稿者の許可なく削除される場合があります。</p>
         </div>
@@ -92,18 +93,37 @@
 
 	export default {
         scrollToTop: true,
+        data(){
+            return {
+                product_id: '',
+                product:''
+            }
+        },
         validate ({ params }) {
             // 数値に制限
             return /^\d+$/.test(params.id)
         },
         async asyncData({app,params}){
-            console.log(params.id)
             const url = 'http://localhost/api/product/'+params.id
             const product = await app.$axios.$get(url)
             const categories_url = 'http://localhost/api/categories/'+product.categories
             const categorise_products = await app.$axios.$get(categories_url)
             return {product,categorise_products};
         },
+        methods:{
+            cartIn(){
+                const in_the_cart = this.$store.state.product.cart.find(item => item.id === this.product.id)
+                if ((!in_the_cart)){
+                    this.$toast.show('カートに保存しました')
+                    this.$store.commit('product/cartIn',this.product)
+                }else {
+                    this.$toast.show('すでにカートに入っている商品です')
+                }
+            },
+            review(){
+                this.$toast.show('評価しました')
+            }
+        }
 
   }
   

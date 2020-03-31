@@ -13,6 +13,7 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_bootstrapvue_96b78fb0 from 'nuxt_plugin_bootstrapvue_96b78fb0' // Source: ./bootstrap-vue.js (mode: 'all')
+import nuxt_plugin_toast_3d2dafa8 from 'nuxt_plugin_toast_3d2dafa8' // Source: ./toast.js (mode: 'client')
 import nuxt_plugin_templatespluginf0e33bac_5d583080 from 'nuxt_plugin_templatespluginf0e33bac_5d583080' // Source: ./templates.plugin.f0e33bac.js (mode: 'all')
 import nuxt_plugin_axios_70fd62f9 from 'nuxt_plugin_axios_70fd62f9' // Source: ./axios.js (mode: 'all')
 
@@ -169,6 +170,10 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_bootstrapvue_96b78fb0 === 'function') {
     await nuxt_plugin_bootstrapvue_96b78fb0(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_toast_3d2dafa8 === 'function') {
+    await nuxt_plugin_toast_3d2dafa8(app.context, inject)
   }
 
   if (typeof nuxt_plugin_templatespluginf0e33bac_5d583080 === 'function') {

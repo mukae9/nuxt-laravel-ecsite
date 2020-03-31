@@ -11,7 +11,7 @@
 			<input type="password" name="password" v-model="user.password">
 			<p>パスワード（確認）</p>
 			<input type="password" name="password_confilm">
-			<button type="button" v-on:click="$store.dispatch('regist/createUserAction',user)">会員登録</button>
+			<button type="button" v-on:click="regist">会員登録</button>
 	</div>
 </div>
 </template>
@@ -31,7 +31,7 @@
 
 		methods:{
 			regist(){
-				$store.commit()
+				this.$store.dispatch('regist/createUserAction',this.user)
 			}
 		}
 

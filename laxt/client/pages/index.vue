@@ -9,9 +9,10 @@
 					<li><img :src="product.imgpath" style="width:100%;"></li>
 					<li ><span class="star">★★★★★</span>(120)</li>
 					<li><nuxt-link to="/link01">{{product.categories}}</nuxt-link></li>
-					<li>2020/2/19発売</li>
+					<li>{{product.release}}発売</li>
 					<li class="fee">¥{{product.fee.toLocaleString()}}</li>
-					<li><span class="speed"><span class="round">●</span>速配対応</span>明日までにお届け</li>
+					<li v-if="product.express"><span class="speed"><span class="round">●</span>速配対応</span>明日までにお届け</li>
+          <li v-else>通常2~3日で配送</li>
 				</ul>
 			</nuxt-link>
 		</div>
