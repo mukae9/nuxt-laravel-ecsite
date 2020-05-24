@@ -13,5 +13,18 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/items', 'Api\ItemController@index'); //追加
+
+Route::post('/review', 'Api\ItemController@reviewPost'); 
+Route::get('/detail/{id}', 'Api\ItemController@detail');
+Route::get('/items', 'Api\ItemController@index'); 
 Route::get('/test', 'MainController@test');
+Route::post('/register', 'Api\AuthController@register');
+Route::post('/login', 'Api\AuthController@authenticate'); 
+
+Route::middleware('auth:sanctum')->group(function(){
+
+    Route::get('/user', function(Request $request){
+        return $request->user();
+    });
+
+});
