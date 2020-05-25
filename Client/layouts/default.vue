@@ -1,8 +1,10 @@
 <template>
   <div>
+    <Header /> 
     <transition name="page">
       <nuxt />
     </transition>
+    <Footer /> 
   </div>
 </template>
 
