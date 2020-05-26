@@ -1,6 +1,6 @@
 # Client
 
-> My exquisite Nuxt.js project
+> My shining Nuxt.js project
 
 ## Build Setup
 

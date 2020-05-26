@@ -1,15 +1,12 @@
 <template>
   <div>
-    <AppNav />
-    <nuxt />
+    Home
   </div>
 </template>
 
 <script>
-import AppNav from '@/components/global/AppNav'
 export default {
   components: {
-    AppNav
   }
 }
 </script>

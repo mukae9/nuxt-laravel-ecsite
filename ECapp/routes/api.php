@@ -15,3 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/items', 'Api\ItemController@index'); //追加
 Route::get('/test', 'MainController@test');
+Route::get('/user', 'MainController@test');
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'Api\AuthController@login');
+    Route::post('logout', 'Api\AuthController@logout');
+    Route::post('register', 'Api\AuthController@register');
+    Route::post('me', 'Api\AuthController@me');
+
+});
