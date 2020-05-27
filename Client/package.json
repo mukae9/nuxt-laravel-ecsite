@@ -1,7 +1,7 @@
 {
   "name": "Client",
   "version": "1.0.0",
-  "description": "My shining Nuxt.js project",
+  "description": "My impeccable Nuxt.js project",
   "author": "mukae9",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.10.3",
+    "normalize.css": "^8.0.1",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {}

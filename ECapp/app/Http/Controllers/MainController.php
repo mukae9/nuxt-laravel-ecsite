@@ -11,4 +11,9 @@ class MainController extends Controller
         return 'こんにちは';
     }
 
+    public function secret()
+    {
+        return '秘密の言葉';
+    }
+
 }

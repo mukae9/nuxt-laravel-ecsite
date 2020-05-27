@@ -1,15 +1,32 @@
 <template>
   <div>
-    <AppNav />
-    <nuxt />
+    <Header /> 
+    <transition name="page">
+      <nuxt />
+    </transition>
+    <Footer /> 
   </div>
 </template>
 
 <script>
-import AppNav from '@/components/global/AppNav'
-export default {
-  components: {
-    AppNav
-  }
-}
+	import Header from "@/components/TheHeader.vue"; // headerをインポート
+	import Footer from "@/components/TheFooter.vue"; // footerをインポート
+	export default {
+		components: {
+			Header,
+			Footer
+		}
+	};
 </script>
+<style>
+  .page-enter {
+    opacity: 0;
+  }
+  .page-enter-active {
+    transition: opacity 0.5s;
+  }
+  font-awesome-icon {
+	  font-size: 20px; 
+	  margin-right:4px;
+  }
+</style>

@@ -23,6 +23,7 @@ export default {
   ** Global CSS
   */
   css: [
+    'normalize.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -39,7 +40,6 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
   ],
   /*
   ** Build configuration
@@ -51,33 +51,10 @@ export default {
     extend (config, ctx) {
     }
   },
-    auth: {
-        strategies: {
-          local: {
-            endpoints: {
-              login: {
-                url: '/auth/login',
-                method: 'post',
-                propertyName: 'token',
-              },
-              user: {
-                url: '/auth/me',
-                method: 'post',
-                propertyName: 'data'
-              },
-              logout: {
-                url: '/logout',
-                method: 'get'
-              },
-            },
-          }
-        }
-      },
-      /*
-       ** Axios module configuration
-       ** See https://axios.nuxtjs.org/options
-       */
-      axios: {
-        baseURL: 'http://localhost.test/api',
-      },
+  // 追記
+  filenames: {
+    app: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js',
+    chunk: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js'
+  },
+  //ここまで
 }

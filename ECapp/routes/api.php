@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/items', 'Api\ItemController@index'); //追加
-Route::get('/test', 'MainController@test');
+Route::get('/test', 'Api\MainController@test');
+Route::get('/detail/{id}', 'Api\ItemController@detail'); //追加
+Route::get('/secret', 'MainController@secret')->middleware('auth:api');
 Route::get('/user', 'MainController@test');
 Route::group([
 

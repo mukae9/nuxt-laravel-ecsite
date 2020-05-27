@@ -13,4 +13,9 @@ class ItemController extends Controller
         $items = Item::all();
         return $items;
     }
+    public function detail($id)
+    {
+        $item = Item::find($id);
+        return $item;
+    }
 }

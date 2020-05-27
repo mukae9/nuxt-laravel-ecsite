@@ -7,15 +7,20 @@
         </a>
       </li>
     </ul>
-    <ul class="flex items-center">
+    <ul  class="flex items-center">
       <li class="mr-4">
         <a href="#" class="text-gray-800 font-medium">
-          {{this.$auth.user}}
+          <!-- {{this.$auth.user.name}} -->
         </a>
       </li>
       <li>
         <a href="#" class="text-gray-800 font-medium">
           Sign out
+        </a>
+      </li>
+          <li>
+        <a href="/mypage" class="text-gray-800 font-medium">
+          mypage
         </a>
       </li>
       <li class="mr-4">
