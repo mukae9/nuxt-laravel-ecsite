@@ -11,7 +11,7 @@
 				<ul>
 					<li>
 						<nuxt-link to="/cart">
-							<font-awesome-icon icon="shopping-cart" />
+							<font-awesome-icon icon="shopping-cart" class="font-awesome"/>
 							カート<span class="cart-num">0</span>
 						</nuxt-link>
 					</li>

@@ -29,6 +29,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src:'~/plugins/common.js' },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -40,6 +41,8 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/toast',
+    'nuxt-fontawesome'
   ],
   /*
   ** Build configuration
@@ -57,4 +60,17 @@ export default {
     chunk: ({ isDev }) => isDev ? '[name].[hash].js' : '[chunkhash].js'
   },
   //ここまで
+  toast: {
+    position: 'top-right', //右上に表示させます
+    duration: 2000, //２秒間表示させます
+    singleton: true //２個目のメッセージが出た時に2秒経ってなくても１つ目を消します
+  },
+  fontawesome: {
+    imports: [
+      {
+        set: '@fortawesome/free-solid-svg-icons',
+        icons: ['fas']
+      }
+    ]
+  },
 }

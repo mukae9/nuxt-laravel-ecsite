@@ -1,10 +1,16 @@
 <template>
-    <div>
+<div>
+    <div class="item-detail">
         <ul class="item-container">
             <li class="title"><h2>{{item.name}}</h2></li>
             <li><img :src="item.imgpath" style="width:100%;"></li>
             <li class="detail">{{item.detail}}</li>
-            <li ><span class="star">★★★★★</span>5.0</li>
+            <li>
+                <span class="star">
+                    {{$reviewToStar($reviewAverage(item.reviews))}}
+                </span>
+                {{$reviewAverage(item.reviews)}}
+            </li> 
             <li>{{item.release}}発売</li>
             <li class="fee">¥{{item.fee.toLocaleString()}}</li>
             <li v-if="item.express">
@@ -17,11 +23,67 @@
             </li>
             <li v-else>通常2~3日で配送</li>
         </ul>
+        <div class="review-post-container">
+            <div class="review-post">
+                <p class="review-post-title">この商品を評価する</p>
+                <form @submit.prevent="reviewPost">
+                    <p>投稿者名</p>
+                    <input type="text" v-model="review.name">
+                    <p>レート</p>
+                    <select v-model="review.star" name="star" id="">
+                        <option value="1">★☆☆☆☆</option>
+                        <option value="2">★★☆☆☆</option>
+                        <option value="3">★★★☆☆</option>
+                        <option value="4">★★★★☆</option>
+                        <option value="5">★★★★★</option>
+                    </select>
+                    <p>投稿内容</p>
+                    <textarea v-model="review.message" placeholder="評価内容をご記入ください"></textarea>
+                    <button>評価する</button>
+                </form>
+            </div>
+            <p class="caution">※不適切な表現がある投稿などについては投稿者の許可なく削除される場合があります。</p>
+        </div>
+    </div>
+    <div class="divider"></div>
+        <div class="review">
+            <h2>評価を見る</h2>
+            <span class="star">{{$reviewToStar($reviewAverage(item.reviews))}}</span> 
+            <section class="review-box">
+                <div v-if="item.reviews.length">
+                    <div v-for="review of item.reviews" :key="review.id" class="review-card">
+                        <ul class="review-info">
+                            <li><font-awesome-icon icon="user-alt" class="font-awesome"/>{{review.name}}</li>
+                            <li class="star">
+                                {{$reviewToStar(review.star)}}
+                            </li>
+                            <li class="review-day">
+                                {{$dateToJaFormat(review.created_at)}} 投稿
+                            </li>
+                        </ul>
+                        <div class="comment">
+                            <p>{{review.message}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>評価はまだありません</div>
+            </section>
+        </div>
     </div>
 </template>
 
 <script>
 	export default {
+        data(){
+            return {
+                review:{
+                    item_id:this.$route.params.id,
+                    name:'',
+                    star:5,
+                    message:''
+                },
+            }
+        },
         validate ({ params }) {
             // ルートパラメーターの値を数値に制限
             return /^\d+$/.test(params.id)
@@ -30,7 +92,18 @@
             const url = 'http://localhost.test/api/detail/'+params.id
             const item = await app.$axios.$get(url)
             return { item };
-        }
+        },
+        methods:{
+        async reviewPost(){
+            try {
+                await this.$axios.$post('http://localhost.test/api/review',this.review)
+                this.$toast.show('評価しました。レビュー審査後に反映されます。')
+                this.review = {} //空にしないと投稿後も情報が残ってしまいます。
+            } catch (err) {
+                this.$toast.show('評価に失敗しました')
+            }
+        },
+    }
     }
 </script>
 
@@ -59,7 +132,6 @@ li {
 	padding: 24px 8px;
 	margin: 4px auto;
     width: 66%;
-	max-width: 660px;
 	font-size: 0.9em;
 }
 
@@ -127,6 +199,11 @@ li {
     
 }
 
+.review-post-container{
+    width:30%;
+    margin-top: 72px;
+    line-height:2rem;
+}
 .review-info{
     width:30%;
 }

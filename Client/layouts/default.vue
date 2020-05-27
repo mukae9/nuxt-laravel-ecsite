@@ -25,8 +25,8 @@
   .page-enter-active {
     transition: opacity 0.5s;
   }
-  font-awesome-icon {
+  .font-awesome {
 	  font-size: 20px; 
-	  margin-right:4px;
+	  margin-right:8px;
   }
 </style>

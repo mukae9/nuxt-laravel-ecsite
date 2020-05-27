@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('/review', 'Api\ItemController@reviewPost'); //追加
 Route::get('/items', 'Api\ItemController@index'); //追加
 Route::get('/test', 'Api\MainController@test');
 Route::get('/detail/{id}', 'Api\ItemController@detail'); //追加

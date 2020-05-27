@@ -5,8 +5,10 @@
 				<ul class="item-cards">
 					<li class="title">{{item.name}}</li>
 					<li><img :src="item.imgpath" style="width:100%;"></li>
-					<li ><span class="star">★★★★★</span>5.0</li>
-					<li><nuxt-link to="">{{item.category}}</nuxt-link></li>
+					 <span class="star">
+                {{$reviewToStar($reviewAverage(item.reviews))}} 
+            </span>
+            {{$reviewAverage(item.reviews)}}
 					<li>{{item.release}}発売</li>
 					<li class="fee">¥{{item.fee.toLocaleString()}}</li>
 					<li v-if="item.express">
